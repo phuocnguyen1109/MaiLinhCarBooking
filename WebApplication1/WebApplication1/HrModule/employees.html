@@ -4,9 +4,9 @@
 
         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 mw-100 navbar-search " style="width: 50%; margin-bottom:10px;">
                 <div class="input-group">
-                  <input type="text" class="form-control bg-light small" placeholder="Tìm Kiếm" aria-label="Search" aria-describedby="basic-addon2">
+                  <input type="text" ng-model="filterText" class="form-control bg-light small" placeholder="Tìm Kiếm" aria-label="Search" aria-describedby="basic-addon2">
                   <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
+                    <button ng-click="search()" class="btn btn-primary" type="button">
                       <i class="fas fa-search fa-sm"></i>
                     </button>
                   </div>
@@ -20,32 +20,28 @@
             <th style="width:5%;">ID</th>
             <th style="width:20%;">Tên Nhân Viên</th>
             <th style="width:10%;">Ngày Sinh</th>
-            <th style="width:15%;">Địa Chỉ</th>
+            <th style="width:20%;">Địa Chỉ</th>
             <th style="width:15%;">Phòng Ban</th>
             <th style="width:10%;">Chức Vụ</th>
-            <th></th>
         </thead>
         <tbody>
             <tr ng-repeat="person in employees">
-                <td><input type="checkbox"></td>
+                <td><input ng-click="updateSelected(person)" ng-model="person.selected" type="checkbox"></td>
                 <td>{{person.id}}</td>
                 <td>{{person.name}}</td>
-                <td>{{person.doB}}</td>
+                <td>{{person.doBDisplay}}</td>
                 <td>{{person.address}}</td>
                 <td>{{person.department}}</td>
                 <td>{{person.role}}</td>
-                <td><button style="margin-right: 5px;" class="btn btn-primary">Sửa</button>
-                    <button class="btn btn-danger">Xóa</button>
-                </td>
             </tr>
         </tbody>
     </table>
 </div>
 
 <div class="col-lg-12" style="margin-top:15px;">
-    <button class="btn btn-success" data-toggle="modal" data-target="#myModal" style="margin-right:15px; width: 150px;">Thêm Nhân Viên</button>
-    <button class="btn btn-primary" style="margin-right:15px; width:150px;">Sửa Nhân Viên</button>
-    <button class="btn btn-danger" style="width: 150px;">Xóa Nhân Viên</button>
+    <button class="btn btn-success" ng-click="openModal(1)" data-toggle="modal" data-target="#myModal" style="margin-right:15px; width: 150px;">Thêm Nhân Viên</button>
+    <button ng-disabled="selectedEmployees.length != 1" data-toggle="modal" data-target="#myModal" class="btn btn-primary" ng-click="openModal(2)" style="margin-right:15px; width:150px;">Sửa Nhân Viên</button>
+    <button ng-disabled="selectedEmployees.length == 0" data-toggle="modal" data-target="#removeModal"  class="btn btn-danger" style="width: 150px;">Xóa Nhân Viên</button>
 </div>
 
 
@@ -56,47 +52,87 @@
       
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">Tạo Nhân Viên</h4>
+              <h4 class="modal-title">{{modalTitle}}</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
       
             <!-- Modal body -->
             <div class="modal-body">
               <form>
-                  <div class="form-group col-lg-4">
+                  <div class="form-group">
+                    <div class="col-lg-4">
                       <label for="id">Mã Nhân Viên:</label>
-                      <input id="id" type="text" class="form-control"/>
-                  </div>
-                  <div class="form-group col-lg-12">
-                        <label for="name">Họ và Tên Nhân Viên:</label>
-                        <input id="name" type="text" class="form-control" />
+                      <input ng-disabled ="isEditting" id="id" ng-model="employee.id" type="text" class="form-control"/>
                     </div>
-                    <div class="form-group col-lg-12">
+                  </div>
+                  <div class="form-group">
+                        <div class="col-lg-12">
+                        <label for="name">Họ và Tên Nhân Viên:</label>
+                        <input id="name" ng-model="employee.name" type="text" class="form-control" /></div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row" style="margin-left: 2px; margin-right: 2px;">
                         <div class="col-lg-6">
                                 <label for="phone">Số Điện Thoại:</label>
-                                <input id="phone" type="text" class="form-control"/>
+                                <input id="phone" ng-model="employee.phone" type="text" class="form-control"/>
                         </div>
                         <div class="col-lg-6">
                                 <label for="dob">Ngày Sinh:</label>
-                                <input id="dob" type="date" class="form-control"/>
+                                <input id="dob" ng-model="employee.doB" type="date" class="form-control"/>
                         </div>
-                           
+                      </div>  
                     </div>
-                    <div class="form-group col-lg-12">
+                    <div class="form-group">
+                      <div class="col-lg-12">
                             <label for="address">Địa Chỉ:</label>
-                            <textarea id="address" class="form-control" rows="4"></textarea>
-                        </div>
+                            <textarea id="address" ng-model="employee.address" class="form-control" rows="4"></textarea></div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-lg-6">
+                        <label for='department'>Phòng Ban:</label>
+                        <select ng-model="employee.department" id="department" class="form-control">
+                          <option>Phòng Nhân Sự</option>
+                          <option>Phòng Kế Toán</option>
+                          <option>Phòng Kỹ Thuật - An Toàn</option>
+                          <option>Phòng Điều Hành - Kinh Doanh</option>
+                        </select>
+                      </div>
+                    </div>
               </form>
             </div>
       
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" ng-click="addEmployees()" data-dismiss="modal">Tạo Nhân Viên</button>
+              <button type="button" class="btn btn-success" ng-click="addEmployee()" data-dismiss="modal">Cập Nhật</button>
               <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy Bỏ</button>
             </div>
       
           </div>
         </div>
       </div>
+
+      <div class="modal" id="removeModal">
+          <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+        
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Xoá Nhân Viên</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+        
+              <!-- Modal body -->
+              <div class="modal-body">
+               <span>Bạn có chắn chắn muốn xóa (những) nhân viên ?</span>
+        
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="removeEmployees()" data-dismiss="modal">Xác Nhận</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy Bỏ</button>
+              </div>
+        
+            </div>
+          </div>
+        </div>
 
 </div>

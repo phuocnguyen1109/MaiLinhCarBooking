@@ -6,6 +6,7 @@
 
     function loginController($rootScope, $scope, $state){
     
+    angular.element('.modal-backdrop').detach();    
     $scope.userName='';
         
     $scope.login = login;

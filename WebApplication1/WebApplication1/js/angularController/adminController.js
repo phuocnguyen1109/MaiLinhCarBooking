@@ -2,7 +2,7 @@
 angular.module('mainApp')
 .controller('adminController', adminController);
 
-function adminController($scope, $stateParams){
+function adminController($scope, $state, $stateParams){
 
 var user = $stateParams.userName;
 
@@ -13,6 +13,7 @@ $scope.initialize = initialize;
 $scope.changeDepartmentName = changeDepartmentName;
 $scope.gotoPermission = gotoPermission;
 $scope.gotoEmployees = gotoEmployees;
+$scope.logout = logout;
 
 function initialize()
 {
@@ -22,6 +23,7 @@ function initialize()
     {
         changeDepartmentName($scope.selectedDept);
     }
+    
 }
 
 function gotoEmployees()
@@ -55,6 +57,11 @@ function changeDepartmentName(departmentNo)
                 case 4: $scope.departmentName = "Phòng Kế Toán";
                 break;
     }
+}
+
+function logout()
+{
+    $state.go('login');
 }
 
 }
