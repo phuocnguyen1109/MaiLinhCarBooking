@@ -1,0 +1,48 @@
+﻿<style>
+    .label {
+        font-weight: bold;
+    }
+    .mb15 {
+        margin-bottom: 15px;
+    }
+</style>
+<div ng-controller="healthCheckController" ng-init="initialize()">
+    <h3> Khám sức khỏe</h3>
+    <form>
+        <div class="mb15">
+            <span class="label">Tiêu chuẩn khám</span>
+            <div ng-repeat="item in standardCheck">
+                <label>
+                    <input type="checkbox" checklist-model="standardCheck" checklist-value="item"> {{item}}
+                </label>
+            </div>
+        </div>
+        <div class="mb15">
+            <span class="label">Năm</span>
+            <input type="text" id="datepicker1">
+        </div>
+        <div class="mb15">
+            <span class="label">Ghi chú</span> <br />
+            <textarea maxlength="400" rows="4" cols="100"></textarea>
+        </div>
+        <div class="mb15">
+            <button class="btn btn-success">Lưu</button>
+        </div>
+    </form>
+</div>
+<script>
+    $(function () {
+        $('#datepicker1').datepicker({
+            changeMonth: false,
+            changeYear: true,
+            showButtonPanel: false,
+            dateFormat: 'yy',
+            onClose: function (dateText, inst) {
+                $(this).datepicker('setDate', new Date('2019'));
+            }
+        }).focus(function () {
+            $(".ui-datepicker-month").hide();
+            $(".ui-datepicker-calendar").hide();
+        });
+    });
+</script>

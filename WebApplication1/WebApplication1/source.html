@@ -21,61 +21,65 @@
 </head>
 
 <body ng-app="mainApp" class="bg-gradient-primary">
-  <div ng-controller="mainController">
-  <div ui-view></div>
-</div>
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <div ng-controller="mainController">
+        <div ui-view></div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="vendor/angular/angular.min.js"></script>
-  <script src="vendor/angular/angular-ui-router.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular/angular-ui-router.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-  <script>
+    <script>
 
-      var app = angular.module("mainApp", ["ui.router"]);
-      app.config(function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/login');
+        var app = angular.module("mainApp", ["ui.router"]);
+        app.config(function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/login');
 
-        $stateProvider
+            $stateProvider
 
-        // HOME STATES AND NESTED VIEWS ========================================
-        .state('login', {
-            url: '/login',
-            templateUrl: 'login.html',
-            controller: 'login_Controller'
-        })
+                // HOME STATES AND NESTED VIEWS ========================================
+                .state('login', {
+                    url: '/login',
+                    templateUrl: 'login.html',
+                    controller: 'login_Controller'
+                })
 
-        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-        .state('dashboard', {
-          url: '/dashboard',
-            templateUrl: 'index.html',
-            controller: 'adminController',
-            params:{
-                    userName: null
-                    }   
+                // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+                .state('dashboard', {
+                    url: '/dashboard',
+                    templateUrl: 'index.html',
+                    controller: 'adminController',
+                    params: {
+                        userName: null
+                    }
+                });
         });
-});
 
 
-angular.module('mainApp')
-.controller('mainController', mainController)
+        angular.module('mainApp')
+            .controller('mainController', mainController)
 
-function mainController($scope){
-    $scope.employees =
-   [{ id:0001, name: 'Administrator',doB:'11-09-1992', doBDisplay:'21/12/1999',address:'District A',phone: '01644202279',department: 'Phòng Nhân Sự', role: 'Administrator', userName: 'admin' },
-   {  id:0002, name: 'Administrator',doB:'11-09-1992', doBDisplay:'11/03/2013' , address:'District A',phone: '01644202279',department: 'Phòng Nhân Sự', role: 'Administrator', userName: 'admin' }];
-}
-</script>
+        function mainController($scope) {
+            $scope.employees =
+                [{ id: 0001, name: 'Administrator', doB: '11-09-1992', doBDisplay: '21/12/1999', address: 'District A', phone: '01644202279', department: 'Phòng Nhân Sự', role: 'Administrator', userName: 'admin' },
+                { id: 0002, name: 'Administrator', doB: '11-09-1992', doBDisplay: '11/03/2013', address: 'District A', phone: '01644202279', department: 'Phòng Nhân Sự', role: 'Administrator', userName: 'admin' }];
+        }
+    </script>
 
-<script src="js/angularController/loginController.js"></script>
-<script src="js/angularController/adminController.js"></script>
-<script src="js/angularController/employeesController.js"></script>
+    <script src="js/angularController/loginController.js"></script>
+    <script src="js/angularController/adminController.js"></script>
+    <script src="js/angularController/employeesController.js"></script>
+    <script src="js/angularController/healthCheckController.js"></script>
 </body>
 
 </html>

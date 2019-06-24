@@ -78,10 +78,12 @@
     <Content Include="forgot-password.html" />
     <Content Include="gulpfile.js" />
     <Content Include="HrModule\employees.html" />
+    <Content Include="HrModule\healthCheck.html" />
     <Content Include="img\undraw_posting_photo.svg" />
     <Content Include="index.html" />
     <Content Include="js\angularController\adminController.js" />
     <Content Include="js\angularController\employeesController.js" />
+    <Content Include="js\angularController\healthCheckController.js" />
     <Content Include="js\angularController\loginController.js" />
     <Content Include="js\demo\chart-area-demo.js" />
     <Content Include="js\demo\chart-bar-demo.js" />

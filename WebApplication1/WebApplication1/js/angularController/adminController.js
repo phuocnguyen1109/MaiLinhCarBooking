@@ -13,7 +13,8 @@ $scope.initialize = initialize;
 $scope.changeDepartmentName = changeDepartmentName;
 $scope.gotoPermission = gotoPermission;
 $scope.gotoEmployees = gotoEmployees;
-$scope.logout = logout;
+    $scope.logout = logout;
+    $scope.gotoHealthCheck = gotoHealthCheck;
 
 function initialize()
 {
@@ -32,6 +33,10 @@ function gotoEmployees()
     $scope.openEmployeesForm = true;
 }
 
+    function gotoHealthCheck() {
+        resetForm();
+        $scope.openHealthCheckForm = true;
+    }
 function gotoPermission()
 {
     resetForm();
@@ -42,6 +47,7 @@ function resetForm()
 {
     $scope.openPermissionForm = false;
     $scope.openEmployeesForm = false;
+    $scope.openHealthCheckForm = false;
 }
 
 function changeDepartmentName(departmentNo)

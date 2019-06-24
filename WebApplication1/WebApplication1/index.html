@@ -90,7 +90,7 @@
         <div id="collapsePagesHR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" ng-click="gotoEmployees()" >Quản Lý Nhân Sự</a>
-            <a class="collapse-item" >Module Nghiệp vụ 1</a>
+            <a class="collapse-item" ng-click="gotoHealthCheck()" >Khám sức khỏe</a>
             <a class="collapse-item" >Module Nghiệp Vụ 2</a>
             <div class="collapse-divider"></div>
             <a class="collapse-item" >Module Nghiệp Vụ 4</a>
@@ -336,7 +336,7 @@
          
           <!--Employees-->
           <div ng-if = "openEmployeesForm" ng-include="'HrModule/employees.html'"></div>
-
+          <div ng-if="openHealthCheckForm" ng-include="'HrModule/healthCheck.html'"></div>
 
         <!--Permission-->
         <div ng-if='openPermissionForm'>
