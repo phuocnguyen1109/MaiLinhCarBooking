@@ -112,6 +112,7 @@
                     $scope.previousjob.id = $scope.previousjobs[$scope.previousjobs.length - 1].id + 1;
                     var DateCurrent = new Date();
                     if ($scope.previousjob.dateTo > DateCurrent) {
+                        $scope.errorMessage = false;
                         $scope.errorMessage2 = true;
                     }
 
@@ -120,9 +121,11 @@
                     $scope.previousjobs.push(angular.copy($scope.previousjob));
                     
                 } else {
+                    $scope.errorMessage2 = false;
                     $scope.errorMessage = true;
+
+
                 }
-               
                
             }
             else {

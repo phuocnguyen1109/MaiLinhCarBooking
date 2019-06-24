@@ -12,7 +12,12 @@ $scope.selectedDept = 1;
 $scope.initialize = initialize;
 $scope.changeDepartmentName = changeDepartmentName;
 $scope.gotoPermission = gotoPermission;
-$scope.gotoEmployees = gotoEmployees;
+    $scope.gotoEmployees = gotoEmployees;
+    // vinh
+$scope.gotoMarriage = gotoMarriage;
+$scope.gotoPreviousJobs = gotoPreviousJobs;
+$scope.gotoEquipment = gotoEquipment;
+
 $scope.logout = logout;
 
 function initialize()
@@ -31,6 +36,22 @@ function gotoEmployees()
     resetForm();
     $scope.openEmployeesForm = true;
 }
+// vinh - goto Marrige Page
+    function gotoMarriage() {
+        resetForm();
+        $scope.openMarriageForm = true;
+    }
+
+    // vinh - goto Previous Job Page
+    function gotoPreviousJobs() {
+        resetForm();
+        $scope.openPreviousJobForm = true;
+    }
+     // vinh - goto Previous Job Page
+    function gotoEquipment() {
+        resetForm();
+        $scope.openEquipmentForm = true;
+    }
 
 function gotoPermission()
 {
@@ -42,6 +63,9 @@ function resetForm()
 {
     $scope.openPermissionForm = false;
     $scope.openEmployeesForm = false;
+    $scope.openMarriageForm = false;
+    $scope.openPreviousJobForm = false;
+    $scope.openEquipmentForm = false;
 }
 
 function changeDepartmentName(departmentNo)
