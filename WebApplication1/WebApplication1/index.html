@@ -88,14 +88,14 @@
           <span>Phòng Nhân Sự</span>
         </a>
         <div id="collapsePagesHR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" ng-click="gotoEmployees()" >Quản Lý Nhân Sự</a>
-            <a class="collapse-item" >Module Nghiệp vụ 1</a>
-            <a class="collapse-item" >Module Nghiệp Vụ 2</a>
-            <div class="collapse-divider"></div>
-            <a class="collapse-item" >Module Nghiệp Vụ 4</a>
-            <a class="collapse-item" >Module Nghiệp vụ 5</a>
-          </div>
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" ng-click="gotoEmployees()">Quản Lý Nhân Sự</a>
+                <a class="collapse-item" ng-click="gotoMarriage()" >Hôn nhân</a>
+                <a class="collapse-item" ng-click="gotoPreviousJobs()" >Công việc trước</a>
+                <div class="collapse-divider"></div>
+                <a class="collapse-item" ng-click="gotoEquipment()" >Trang thiết bị</a>
+                <a class="collapse-item">Module Nghiệp vụ 5</a>
+            </div>
         </div>
       </li>
 
@@ -333,141 +333,147 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-         
-          <!--Employees-->
-          <div ng-if = "openEmployeesForm" ng-include="'HrModule/employees.html'"></div>
+
+            <!--Employees-->
+            <div ng-if="openEmployeesForm" ng-include="'HrModule/employees.html'"></div>
+            <!--Marriage-->
+            <div ng-if="openMarriageForm" ng-include="'HrModule/marriage.html'"></div>
+            <!--Previous Job-->
+            <div ng-if="openPreviousJobForm" ng-include="'HrModule/previousjobs.html'"></div>
+            <!--Equipment-->
+            <div ng-if="openEquipmentForm" ng-include="'HrModule/equipments.html'"></div>
 
 
-        <!--Permission-->
-        <div ng-if='openPermissionForm'>
-             <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800"> <i class="fas fa-fw fa-cog"></i> Phân Quyền {{departmentName}}</h1>
-            </div>
-
-               <!-- Content Row -->
-          <div class="row">
-
-              <!-- Phòng Nhân Sự Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="department card border-left-primary shadow h-100 py-2" ng-style="selectedDept == 1 ? {'background-color' : 'lightgrey'} : {'background-color': ''}" ng-click="changeDepartmentName(1)">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nhân Sự</div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
+            <!--Permission-->
+            <div ng-if='openPermissionForm'>
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800"> <i class="fas fa-fw fa-cog"></i> Phân Quyền {{departmentName}}</h1>
                 </div>
-              </div>
-  
-              <!-- Earnings (Monthly) Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="department card border-left-success shadow h-100 py-2" ng-style="selectedDept == 2 ? {'background-color' : 'lightgrey'} : {'background-color': ''}" ng-click="changeDepartmentName(2)">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Điều Hành - Kinh Doanh</div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-              <!-- Earnings (Monthly) Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="department card border-left-info shadow h-100 py-2" ng-style="selectedDept == 3 ? {'background-color' : 'lightgrey'} : {'background-color': ''}" ng-click="changeDepartmentName(3)">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kỹ Thuật - An Toàn</div>
-                        <div class="row no-gutters align-items-center">
-                          <div class="col">
-                          </div>
+
+                <!-- Content Row -->
+                <div class="row">
+
+                    <!-- Phòng Nhân Sự Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="department card border-left-primary shadow h-100 py-2" ng-style="selectedDept == 1 ? {'background-color' : 'lightgrey'} : {'background-color': ''}" ng-click="changeDepartmentName(1)">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nhân Sự</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-  
-              <!-- Pending Requests Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="department card border-left-warning shadow h-100 py-2" ng-style="selectedDept == 4 ? {'background-color' : 'lightgrey'} : {'background-color': ''}" ng-click="changeDepartmentName(4)">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Kế Toán</div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-           <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th style="width: 40%">Role</th>
-                  <th style="width: 10%">Read</th>
-                  <th style="width: 10%">Manage</th>
-                  <th style="width: 10%">Creat</th>
-                  <th style="width: 10%">Delete</th>
-                  <th style="width: 20%"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Trưởng Phòng</td>
-                  <td><input type="checkbox"/></td>
-                  <td><input type="checkbox"/></td>
-                  <td><input type="checkbox"/></td>
-                  <td><input type="checkbox"/></td>
-                  <td><button class="btn btn-danger col-lg-6">Reset</button></td>
-                </tr>
-                <tr>
-                    <td>Phó Phòng</td>
-                    <td><input type="checkbox"/></td>
-                    <td><input type="checkbox"/></td>
-                    <td><input type="checkbox"/></td>
-                    <td><input type="checkbox"/></td>
-                    <td><button class="btn btn-danger col-lg-6">Reset</button></td>
-                  </tr>
-                  <tr>
-                      <td>Thư Ký</td>
-                      <td><input type="checkbox"/></td>
-                      <td><input type="checkbox"/></td>
-                      <td><input type="checkbox"/></td>
-                      <td><input type="checkbox"/></td>
-                      <td><button class="btn btn-danger col-lg-6">Reset</button></td>
-                    </tr>
-                    <tr>
-                        <td>Nhân Viên</td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><button class="btn btn-danger col-lg-6">Reset</button></td>
-                      </tr>
-              </tbody>
-           </table>
-            
-           <div  style="width: 100%; float: right;">
-              <button class="btn btn-success">Lưu</button>
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="department card border-left-success shadow h-100 py-2" ng-style="selectedDept == 2 ? {'background-color' : 'lightgrey'} : {'background-color': ''}" ng-click="changeDepartmentName(2)">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Điều Hành - Kinh Doanh</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="department card border-left-info shadow h-100 py-2" ng-style="selectedDept == 3 ? {'background-color' : 'lightgrey'} : {'background-color': ''}" ng-click="changeDepartmentName(3)">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kỹ Thuật - An Toàn</div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="department card border-left-warning shadow h-100 py-2" ng-style="selectedDept == 4 ? {'background-color' : 'lightgrey'} : {'background-color': ''}" ng-click="changeDepartmentName(4)">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Kế Toán</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%">Role</th>
+                            <th style="width: 10%">Read</th>
+                            <th style="width: 10%">Manage</th>
+                            <th style="width: 10%">Creat</th>
+                            <th style="width: 10%">Delete</th>
+                            <th style="width: 20%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Trưởng Phòng</td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><button class="btn btn-danger col-lg-6">Reset</button></td>
+                        </tr>
+                        <tr>
+                            <td>Phó Phòng</td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><button class="btn btn-danger col-lg-6">Reset</button></td>
+                        </tr>
+                        <tr>
+                            <td>Thư Ký</td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><button class="btn btn-danger col-lg-6">Reset</button></td>
+                        </tr>
+                        <tr>
+                            <td>Nhân Viên</td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><button class="btn btn-danger col-lg-6">Reset</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="width: 100%; float: right;">
+                    <button class="btn btn-success">Lưu</button>
+                </div>
             </div>
-        </div>
 
         </div>
         <!-- /.container-fluid -->

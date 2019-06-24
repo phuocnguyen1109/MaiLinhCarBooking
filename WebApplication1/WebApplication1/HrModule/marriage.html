@@ -1,0 +1,140 @@
+﻿<div ng-controller='marriageController' ng-init='initialize()'>
+
+    <h3>Quản lý Hôn Nhân</h3>
+    <!--<div class="dropdown">-->
+        <!--<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{dropdowntext}}
+        </button>-->
+
+        <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+            <div class="col-lg-5 row">
+                <div class="col-lg-6" style="font-size:24px;font-weight:bold">{{dropdowntext}}</div>
+                <div  class="col-lg-6" style="font-size:20px;font-weight:bold">{{statusMarriage}}</div>
+
+            </div>
+           
+            <!--<select>
+                <option value="" disabled selected>Chọn tình trạng hôn nhân</option>
+                <option ng-repeat="items in valueOfDropDown">{{items}}</option>
+
+            </select>-->
+            <!--<a class="dropdown-item" ng-repeat="items in valueOfDropDown">{{items}}</a>-->
+
+        <!--</div>-->
+    <!--</div>-->
+    <div class="col-lg-12">
+        <table class="table table-striped" style="max-height: 500px; overflow-y: scroll;">
+            <thead>
+            <th style="width:5%;"></th>
+            <th style="width:5%;">ID</th>
+            <th style="width:15%;">Họ Tên</th>
+            <th style="width:20%;">Nơi ở</th>
+            <th style="width:10%;">Quan hệ</th>
+            <th style="width:10%;">Tình Trạng</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="person in relatives">
+                    <td><input ng-click="updateSelected(person)" ng-model="person.selected" type="checkbox"></td>
+                    <td>{{person.id}}</td>
+                    <td>{{person.name}}</td>
+                    <td>{{person.address}}</td>
+                    <td>{{person.relative}}</td>
+                    <td>{{person.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-12" style="margin-top:15px;">
+        <button class="btn btn-success" ng-click="openModal(1)" data-toggle="modal" data-target="#myModal" style="margin-right:15px; width: 150px;">Thêm Người Thân</button>
+        <button ng-disabled="selectedRelatives.length != 1" data-toggle="modal" data-target="#myModal" class="btn btn-primary" ng-click="openModal(2)" style="margin-right:15px; width:150px;">Sửa Người Thân</button>
+        <button ng-disabled="selectedRelatives.length == 0" data-toggle="modal" data-target="#removeModal" class="btn btn-danger" style="width: 150px;">Xóa Người Thân</button>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">{{modalTitle}}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+                        
+                        <div class="form-group">
+                            <label for='relative'>Quan hệ</label><br />
+                            <select ng-model="relative.relative" id="relative" class="form-control">
+                                <option ng-repeat="items in dropdownCheck">{{items}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <label for="name">Họ và Tên Người Thân:</label>
+                                <input id="name" ng-model="relative.name" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                <div class="col-lg-6">
+                                    <label for="dob">Ngày Sinh:</label>
+                                    <input id="dob" ng-model="relative.doB" type="date" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <label for="address">Địa Chỉ:</label>
+                                <textarea id="address" ng-model="relative.address" class="form-control" rows="4"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <label for="name">Trạng Thái:</label>
+                                <input id="name" ng-model="relative.status" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="addRelative()" data-dismiss="modal">Cập Nhật</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy Bỏ</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="removeModal">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Xoá Người Thân</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <span>Bạn có chắn chắn muốn xóa (những) người thân ?</span>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" ng-click="removeRelatives()" data-dismiss="modal">Xác Nhận</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy Bỏ</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,23 @@
+﻿<div ng-controller='equipmentsController' ng-init='initialize()'>
+
+    <h3>Quản Lý Trang Thiết Bị</h3>
+
+    <div class="col-lg-12">
+        <table class="table table-striped" style="max-height: 500px; overflow-y: scroll;">
+            <thead>
+                <th style="width:10%;">ID</th>
+                <th style="width:25%;">Tên Thiết Bị</th>
+                <th style="width:20%;">Đã Nhận</th>
+                <th style="width:10%;">Ngày Nhận</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="equipment in equipments">
+                    <td>{{equipment.id}}</td>
+                    <td>{{equipment.name}}</td>
+                    <td><input ng-click="updateSelected(equipment)" ng-model="equipment.status"  type="checkbox"></td>
+                    <td><input id="test"  ng-model="equipment.dateReceived" ng-change="changeDate(equipment.dateReceived)"  data-date="" data-date-format="DD MMMM YYYY type="date" ></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

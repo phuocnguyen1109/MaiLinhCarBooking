@@ -1,0 +1,141 @@
+﻿<div ng-controller='previousjobsController' ng-init='initialize()'>
+
+    <h3>Quản Lý Công Tác Trước</h3>
+    <div class="row">
+        <div class="col-6">
+            <span>Mã Nhân Viên:{{employees.id}}</span>
+            <span>{{}}</span>
+        </div>
+        <div class="col-6">
+            <span>Tên Nhân Viên:{{employees.name}}</span>
+            <span>{{}}</span>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 mw-100 navbar-search " style="width: 50%; margin-bottom:10px;">
+        <div class="input-group">
+            <input type="text" ng-model="filterText" class="form-control bg-light small" placeholder="Tìm Kiếm" aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button ng-click="search()" class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="col-lg-12">
+        <table class="table table-striped" style="max-height: 500px; overflow-y: scroll;">
+            <thead>
+            <th style="width:5%;"></th>
+            <th style="width:5%;">ID</th>
+            <th style="width:10%;">Từ</th>
+            <th style="width:10%;">Đến</th>
+            <th style="width:25%;">Tên Công Ty</th>
+            <th style="width:20%;">Ghi Chú</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="job in previousjobs">
+                    <td><input ng-click="updateSelected(job)" ng-model="job.selected" type="checkbox"></td>
+                    <td>{{job.id}}</td>
+                    <td>{{job.dateForm}}</td>
+                    <td>{{job.dateTo}}</td>
+                    <td>{{job.nameCompany}}</td>
+                    <td>{{job.note}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-lg-12" style="margin-top:15px;">
+        <button class="btn btn-success" ng-click="openModal(1)" data-toggle="modal" data-target="#myModal" style="margin-right:15px; width: 150px;">Thêm Công Việc Trước</button>
+        <button ng-disabled="selectedPreviousJobs.length != 1" data-toggle="modal" data-target="#myModal" class="btn btn-primary" ng-click="openModal(2)" style="margin-right:15px; width:150px;">Sửa Công Việc Trước</button>
+        <button ng-disabled="selectedPreviousJobs.length == 0" data-toggle="modal" data-target="#removeModal" class="btn btn-danger" style="width: 150px;">Xóa Công Việc Trước</button>
+    </div>
+
+
+    <!--Modal-->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">{{modalTitle}}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                <div class="col-lg-6">
+                                    <label for="dateFrom">Từ ngày:</label>
+                                    <input id="dateFrom" data-date="" data-date-format="DD MMMM YYYY" ng-model="previousjob.dateForm" type="date" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="dateTo">Đến ngày:</label>
+                                    <input id="dateTo" data-date="" data-date-format="DD MMMM YYYY" ng-model="previousjob.dateTo" type="date" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="errorMessage">
+                            <span style="color:red">Ngày kết thúc phải nhỏ hơn ngày bắt đầu </span>
+                        </div>
+                        <div class="form-group" ng-show="errorMessage2">
+                            <span style="color:red">Ngày kết thúc không thể lớn hơn ngày hiện tại </span>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <label for="name">Tên Công Ty:</label>
+                                <input id="name" ng-model="previousjob.nameCompany" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <label for="note">Ghi Chú:</label>
+                                <textarea id="note" ng-model="previousjob.note" class="form-control" rows="4"></textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="addPreJob()" >Cập Nhật</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy Bỏ</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="removeModal">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Xoá Công Việc Trước Đó</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <span>Bạn có chắn chắn muốn xóa (những) công việc trước đó ?</span>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" ng-click="removePreJob()" data-dismiss="modal">Xác Nhận</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy Bỏ</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
