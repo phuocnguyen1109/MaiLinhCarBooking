@@ -14,11 +14,16 @@
         $scope.updateSelected = updateSelected;
         $scope.openModal = openModal;
         $scope.search = search;
-
+        $scope.goToEditInformation = goToEditInformation;
+        $scope.gotoEmployees = gotoEmployees;
+        $scope.title = "Sửa Thông Tin Nhân Viên";
         $scope.selectedEmployees =[];
         $scope.filterText ='';
+        $scope.listProvince = [
+
+        ];
         var backupEmployees =[];
-        
+        $scope.showEmployeesForm = true;
 
         function initialize()
         {
@@ -63,6 +68,23 @@
             $scope.employee = angular.copy($scope.selectedEmployees[0]);
         }
 
+        function goToEditInformation() {
+            resetForm();
+            $scope.openEditInformation = true;
+            $scope.isEditting = true;
+            $scope.selectedEmployees[0].doB = new Date($scope.selectedEmployees[0].doB);
+            $scope.employee = angular.copy($scope.selectedEmployees[0]);
+        }
+
+        function gotoEmployees() {
+            resetForm();
+            $scope.showEmployeesForm = true;
+        }
+
+        function resetForm() {
+            $scope.openEditInformation = false;
+            $scope.showEmployeesForm = false;
+        }
 
         function removeEmployees(){
             $scope.selectedEmployees.forEach(function(employee, index){
@@ -82,9 +104,12 @@
                 name:'',
                 department:'',
                 role: 'Nhân Viên',
-                address:'',
+                addressDefault:'',
+                addressContact: '',
                 doB:'',
-                phone:'' 
+                dateJoin:'',
+                phone:'',
+                contract: ''
             }
 
             $scope.selectedEmployees =[];
@@ -104,10 +129,13 @@
                 employee.name = $scope.employee.name;
                 employee.department = $scope.employee.department;
                 employee.phone = $scope.employee.phone;
-                employee.address = $scope.employee.address;
-                employee.doB = $scope.employee.doB
+                employee.addressDefault = $scope.employee.addressDefault;
+                employee.addressContact = $scope.employee.addressContact;
+                employee.doB = $scope.employee.doB;
+                employee.dateJoin = $scope.employee.dateJoin
                 employee.doBDisplay = $scope.employee.doB.toLocaleString(['ban', 'id']);
                 employee.selected =false;
+                employee.contract = $scope.employee.contract;
             }
             resetData();
             backupEmployees = angular.copy($scope.employees);

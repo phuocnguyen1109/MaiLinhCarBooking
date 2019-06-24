@@ -1,6 +1,7 @@
 <div ng-controller='employeesController' ng-init='initialize()'>
 
-<h3>Quản Lý Nhân Viên</h3>
+<div ng-if="showEmployeesForm">
+  <h3>Quản Lý Nhân Viên</h3>
 
         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 mw-100 navbar-search " style="width: 50%; margin-bottom:10px;">
                 <div class="input-group">
@@ -40,11 +41,14 @@
 
 <div class="col-lg-12" style="margin-top:15px;">
     <button class="btn btn-success" ng-click="openModal(1)" data-toggle="modal" data-target="#myModal" style="margin-right:15px; width: 150px;">Thêm Nhân Viên</button>
-    <button ng-disabled="selectedEmployees.length != 1" data-toggle="modal" data-target="#myModal" class="btn btn-primary" ng-click="openModal(2)" style="margin-right:15px; width:150px;">Sửa Nhân Viên</button>
+    <button ng-disabled="selectedEmployees.length != 1" class="btn btn-primary" ng-click="goToEditInformation()" style="margin-right:15px; width:150px;">Sửa Nhân Viên</button>
     <button ng-disabled="selectedEmployees.length == 0" data-toggle="modal" data-target="#removeModal"  class="btn btn-danger" style="width: 150px;">Xóa Nhân Viên</button>
 </div>
+</div>
 
+<div ng-if="openEditInformation" ng-include="'HrModule/editInformation.html'"></div>
 
+ </div>
 <!--Modal-->
 <div class="modal" id="myModal">
         <div class="modal-dialog modal-lg modal-dialog-centered">

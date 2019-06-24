@@ -1,0 +1,417 @@
+<div>
+    <div class="modal-header">
+        <h3>{{title}}</h3>
+        <button type="button" class="btn btn-default btn-sm" ng-click="gotoEmployees()">
+            <i class="fa fa-hand-o-right"></i> Back 
+          </button>
+    </div>
+    
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                    <div class="col-lg-6">
+                            <label for="id">Mã Nhân Viên:</label>
+                            <input ng-disabled ="isEditting" id="id" ng-model="employee.id" type="text" class="form-control"/>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="name">Họ và Tên Nhân Viên:</label>
+                        <input id="name" ng-model="employee.name" type="text" class="form-control" />
+                    </div>
+                </div>
+            </div>
+           
+            <div class="form-group">
+            <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                <div class="col-lg-6">
+                        <label for="phone">Số Điện Thoại:</label>
+                        <input id="phone" ng-model="employee.phone" type="text" class="form-control"/>
+                </div>
+                <div class="col-lg-6">
+                        <label for="dob">Ngày Sinh:</label>
+                        <input id="dob" ng-model="employee.doB" type="date" class="form-control"/>
+                </div>
+            </div>  
+            </div>
+              <div class="form-group">
+                <div class="col-lg-12">
+                      <label for="address">Địa Chỉ Thường Trú:</label>
+                      <textarea id="address" ng-model="employee.addressDefault" class="form-control" rows="1"></textarea></div>
+              </div>
+              <div class="form-group">
+                    <div class="col-lg-12">
+                          <label for="address">Địa Chỉ Liên Lạc:</label>
+                          <textarea id="address" ng-model="employee.addressContact" class="form-control" rows="1"></textarea></div>
+                  </div>
+
+              <div class="form-group">
+                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                    <div class="col-lg-6">
+                        <label for="dateJoin">Ngày Vào Công Ty:</label>
+                        <input id="dateJoin" ng-model="employee.dateJoin" type="date" class="form-control"/>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for='department'>Chức vụ</label>
+                        <select ng-model="employee.department" id="department" class="form-control">
+                            <option value="1" selected >Lái Xe</option>
+                            <option value="2">Nhân viên</option>
+                            <option value="3">Lao Công</option>
+                        </select>
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                    <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                        <div class="col-lg-6">
+                                <input type="radio" name="contract" value="1" > Hợp đồng lao động
+                            </div>
+                        <div class="col-lg-6">
+                                <input type="radio" name="contract" value="2" > Hợp đồng hợp tác
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                        <div class="col-lg-6">
+                                <label>Thời Hạn Hợp Đồng:</label>
+                                <input type="number" name="expire" min="1" max="5" class="form-control" checked> (năm)
+                            </div>
+                        <div class="col-lg-6">
+                                <label>Ngày Hết Hạn Hợp Đồng:</label>
+                                <input id="dateExp" ng-model="employee.dateExp" type="date" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-lg-6">
+                                <label for="dateOut">Ngày Nghỉ Việc:</label>
+                                <input id="dateOut" ng-model="employee.dateOut" type="date" class="form-control"/>
+                        </div>
+                </div>
+
+        </form>
+      </div>
+      <!-- 1px solid #e3e6f0; -->
+      <div style="border-top: 1px solid #e3e6f0;">
+            <ul class="nav nav-tabs" id="example-tabs" role="tablist">
+                <li class="nav-item">
+                    <a id="tab1" class="nav-link active" data-toggle="tab" role="tab"  href="#pane-tab-1">Lý lịch</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab2" class="nav-link" data-toggle="tab" role="tab"  href="#">Trình độ</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab3" class="nav-link" data-toggle="tab" role="tab"  href="#pane-tab-3">Khám sức khỏe</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab3" class="nav-link" data-toggle="tab" role="tab"  href="#pane-tab-4">Hôn nhân</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab3" class="nav-link" data-toggle="tab" role="tab"  href="#pane-tab-5">Trang thiết bị</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="pane-tab-1" role="tabpanel" aria-labelledby="tab1">
+                        <form>
+                            <div class="form-group">
+                                    <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                        <div class="col-lg-6">
+                                                <label for="id">Mã Nhân Viên:</label>
+                                                <input ng-disabled ="isEditting" id="id" ng-model="employee.id" type="text" class="form-control"/>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="name">Họ và Tên Nhân Viên:</label>
+                                            <input id="name" ng-model="employee.name" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                    <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                        <div class="col-lg-6">
+                                                <label>Giới tính:</label> <br />
+                                                <input type="radio" name="gender" value="1" > Nam 
+                                                <input type="radio" name="gender" value="2" style="margin-left: 15px;" > Nữ
+                                        </div>
+                                        <div class="col-lg-6">
+                                                <label for="dob">Ngày Sinh:</label>
+                                                <input id="dob" ng-model="employee.doB" type="date" class="form-control"/>
+                                        </div>
+                                    </div>  
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-6">
+                                            <label for='home'>Quê quán</label>
+                                            <select  id="home" class="form-control">
+                                                <option value="1" selected >TP Hồ Chí Minh</option>
+                                                <option value="2">Hà Nội</option>
+                                                <option value="3">Hải Phòng</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for='religion'>Tôn giáo</label>
+                                        <select  id="religion" class="form-control">
+                                            <option value="1" selected >Không</option>
+                                            <option value="2">Phật giáo</option>
+                                            <option value="3">Thiên Chúa Giáo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-6">
+                                            <label>Dân tộc</label>
+                                            <select   class="form-control">
+                                                <option value="1" selected >Kinh</option>
+                                                <option value="2">Mường</option>
+                                                <option value="3">Khmer</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for='nation'>Quốc tịch</label>
+                                        <select  id="nation" class="form-control">
+                                            <option value="1" selected >VIệt Nam</option>
+                                            <option value="2">Hoa Kỳ</option>
+                                            <option value="3">Trung Quốc</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-4">
+                                            <label for="idNumber">Số CMND:</label>
+                                            <input id="idNumber"  type="text" class="form-control" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                            <label>Nơi cấp:</label>
+                                            <select  class="form-control">
+                                                    <option value="1" selected >TP Hồ Chí Minh</option>
+                                                    <option value="2">Hà Nội</option>
+                                                    <option value="3">Hải Phòng</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label>Ngày cấp:</label>
+                                        <input  type="date" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-4">
+                                            <label for="idNumber">Số thẻ căn cước:</label>
+                                            <input id="idNumber"  type="text" class="form-control" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                            <label>Nơi cấp thẻ căn cước:</label>
+                                            <select  class="form-control">
+                                                    <option value="1" selected >TP Hồ Chí Minh</option>
+                                                    <option value="2">Hà Nội</option>
+                                                    <option value="3">Hải Phòng</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label>Ngày cấp thẻ căn cước:</label>
+                                        <input  type="date" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                Địa chỉ thường trú:
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-4">
+                                            <label for="idNumber">Số đường, phường/xã:</label>
+                                            <input id="idNumber"  type="text" class="form-control" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                            <label>Quận/Huyện:</label>
+                                            <select  class="form-control">
+                                                    <option value="1" selected >Tân Bình</option>
+                                                    <option value="2">Thủ Đức</option>
+                                                    <option value="3">Gò Vấp</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label>Tỉnh/Thành phố</label>
+                                        <select  class="form-control">
+                                                <option value="1" selected >TP Hồ Chí Minh</option>
+                                                <option value="2">Hà Nội</option>
+                                                <option value="3">Hải Phòng</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                Địa chỉ liên lạc:
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-4">
+                                            <label for="idNumber">Số đường, phường/xã:</label>
+                                            <input id="idNumber"  type="text" class="form-control" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                            <label>Quận/Huyện:</label>
+                                            <select  class="form-control">
+                                                    <option value="1" selected >Tân Bình</option>
+                                                    <option value="2">Thủ Đức</option>
+                                                    <option value="3">Gò Vấp</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label>Tỉnh/Thành phố</label>
+                                        <select  class="form-control">
+                                                <option value="1" selected >TP Hồ Chí Minh</option>
+                                                <option value="2">Hà Nội</option>
+                                                <option value="3">Hải Phòng</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-6">
+                                            <label for="phone">Số Điện Thoại:</label>
+                                            <input id="phone" ng-model="employee.phone" type="text" class="form-control"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for='department'>Chức vụ</label>
+                                        <select ng-model="employee.department" id="department" class="form-control">
+                                            <option value="1" selected >Lái Xe</option>
+                                            <option value="2">Nhân viên</option>
+                                            <option value="3">Lao Công</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-6">
+                                            <label>Ngày vào hệ thống MLC:</label>
+                                            <input id="dateExp"  type="date" class="form-control"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                            <label>Ngày vào công ty:</label>
+                                            <input id="dateExp"  type="date" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-6">
+                                            <input type="radio" name="contract" value="1" > Hợp đồng lao động
+                                        </div>
+                                    <div class="col-lg-6">
+                                            <input type="radio" name="contract" value="2" > Hợp đồng hợp tác
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-4">
+                                        <label>Thời Hạn Hợp Đồng:</label>
+                                        <select  class="form-control">
+                                                <option value="1" selected >03 tháng</option>
+                                                <option value="1" selected >12 tháng</option>
+                                                <option value="1" selected >24 tháng</option>
+                                                <option value="1" selected >36 tháng</option>
+                                                <option value="1" selected >60 tháng</option>
+                                                <option value="1" selected >Không xác định</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                            <label>Ngày Ký Hợp Đồng:</label>
+                                            <input id="dateExp" ng-model="employee.dateExp" type="date" class="form-control"/>
+                                    </div>
+                                    <div class="col-lg-4">
+                                            <label>Ngày Hết Hạn Hợp Đồng:</label>
+                                            <input id="dateExp" ng-model="employee.dateExp" type="date" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-6">
+                                            <label for="idNumber">Số sổ BHXH:</label>
+                                            <input id="idNumber"  type="text" class="form-control" />
+                                    </div>
+                                    <div class="col-lg-6">
+                                            <label for="idNumber">Số Hợp đồng BHNT:</label>
+                                            <input id="idNumber"  type="text" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                        <label for="address">Ghi nhận tình trạng bàn giao sổ BHXH, BHNT:</label>
+                                        <textarea id="address" class="form-control" rows="1"></textarea></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2px; margin-right: 2px;">
+                                    <div class="col-lg-6">
+                                            <label>Lương hưu trí: </label> <br />
+                                            <input type="radio" name="salary" value="1" > Có 
+                                            <input type="radio" name="salary" value="2" style="margin-left: 15px;"> Không
+                                    </div>
+                                    <div class="col-lg-6">
+                                            <label>Nghỉ việc: </label> <br />
+                                            <input type="radio" name="out" value="1" > Có 
+                                            <input type="radio" name="out" value="2" style="margin-left: 15px;" > Không
+                                    </div>
+                                </div>  
+                            </div>
+                        </form>
+                </div>
+                <div class="tab-pane fade" id="pane-tab-2" role="tabpanel" aria-labelledby="tab2">
+                    Nội dung Tab2 - HTML code
+                </div>
+                <div class="tab-pane fade" id="pane-tab-3" role="tabpanel" aria-labelledby="tab3">
+                    <form>
+                        <div class="mb15">
+                            <span class="label">Tiêu chuẩn khám</span>
+                            <div ng-repeat="item in standardCheck">
+                                <label>
+                                    <input type="checkbox" checklist-model="standardCheck" checklist-value="item"> {{item}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb15">
+                            <span class="label">Năm</span>
+                            <input type="text" id="datepicker1">
+                        </div>
+                        <div class="mb15">
+                            <span class="label">Ghi chú</span> <br />
+                            <textarea maxlength="400" rows="4" cols="100"></textarea>
+                        </div>
+                        <div class="mb15">
+                            <button class="btn btn-success">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" ng-click="addEmployee()" data-dismiss="modal">Cập Nhật</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="gotoEmployees()">Hủy Bỏ</button>
+      </div>
+</div>
+
+<script>
+        $(function () {
+            $('#datepicker1').datepicker({
+                changeMonth: false,
+                changeYear: true,
+                showButtonPanel: false,
+                dateFormat: 'yy',
+                onClose: function (dateText, inst) {
+                    $(this).datepicker('setDate', new Date('2019'));
+                }
+            }).focus(function () {
+                $(".ui-datepicker-month").hide();
+                $(".ui-datepicker-calendar").hide();
+            });
+        });
+    </script>
